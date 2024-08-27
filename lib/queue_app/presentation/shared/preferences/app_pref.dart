@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
-const String PREFS_KEY_IP = "PREFS_KEY_IP";
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -16,15 +15,6 @@ class AppPreferences {
   }
 
   String? getLang(String key) {
-    return _sharedPreferences.getString(key);
-  }
-
-  //IP
-  Future<bool> setPrinterIP(String key, String ip) async {
-    return await _sharedPreferences.setString(key, ip);
-  }
-
-  String? getPrinterIP(String key) {
     return _sharedPreferences.getString(key);
   }
 

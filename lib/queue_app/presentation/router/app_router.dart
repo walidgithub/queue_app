@@ -4,6 +4,7 @@ import 'package:queue_app/queue_app/presentation/ui/customer_details/customer_de
 import 'package:queue_app/queue_app/presentation/ui/language/language_view.dart';
 import 'package:queue_app/queue_app/presentation/ui/printing/printing_view.dart';
 import 'package:queue_app/queue_app/presentation/ui/service_category/service_category_view.dart';
+import '../ui/settings/settings_view.dart';
 
 class Routes {
   static const String languageRoute = "/language";
@@ -11,6 +12,7 @@ class Routes {
   static const String serviceCategoryRoute = "/serviceCategory";
   static const String customerDetailsRoute = "/customerDetails";
   static const String printingRoute = "/printing";
+  static const String settingsRoute = "/settings";
 }
 
 class RouteGenerator {
@@ -24,8 +26,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const ServiceCategoryView());
       case Routes.customerDetailsRoute:
         return MaterialPageRoute(builder: (_) => const CustomerDetailsView());
-      // case Routes.printingRoute:
-      //   return MaterialPageRoute(builder: (_) => const PrintingView());
+      case Routes.printingRoute:
+        return MaterialPageRoute(builder: (_) => const PrintingView());
+      case Routes.settingsRoute:
+        return MaterialPageRoute(builder: (_) => const SettingView());
       default:
         return unDefinedRoute();
     }

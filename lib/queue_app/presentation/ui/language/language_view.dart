@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:queue_app/queue_app/presentation/shared/constants/app_assets.dart';
 import 'package:queue_app/queue_app/presentation/shared/style/app_colors.dart';
-import 'package:queue_app/queue_app/presentation/ui/settings/settings.dart';
 
 import '../../router/app_router.dart';
 import '../../shared/constants/app_constants.dart';
@@ -29,18 +28,17 @@ class _LanguageViewState extends State<LanguageView> {
             onTap: () => FocusScope.of(context).unfocus(),
             child: SafeArea(
                 child: Scaffold(
-                  appBar: AppBar(
-                    automaticallyImplyLeading: false,
-                    actions: [
-                      IconButton(
-                        icon: SvgPicture.asset(AppAssets.settings,
-                            width: 25.sp),
-                        onPressed: () {
-                          SettingsDialog.show(context);
-                        },
-                      )
-                    ],
-                  ),
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                actions: [
+                  IconButton(
+                    icon: SvgPicture.asset(AppAssets.settings, width: 25.sp),
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.settingsRoute);
+                    },
+                  )
+                ],
+              ),
               body: bodyContent(context),
             ))));
   }
@@ -49,23 +47,37 @@ class _LanguageViewState extends State<LanguageView> {
     return Center(
       child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          textComponent(context, AppStrings.selectLangAr,
-              AppFonts.arabicFontFamily, AppColors.black, FontWeight.bold, 30.sp),
-          textComponent(context, AppStrings.selectLang,
-              AppFonts.englishFontFamily, AppColors.black, FontWeight.bold, 30.sp),
+          textComponent(
+              context,
+              AppStrings.selectLangAr,
+              AppFonts.arabicFontFamily,
+              AppColors.black,
+              FontWeight.bold,
+              AppConstants.titleFontSize),
+          textComponent(
+              context,
+              AppStrings.selectLang,
+              AppFonts.englishFontFamily,
+              AppColors.black,
+              FontWeight.bold,
+              AppConstants.titleFontSize),
           SizedBox(
             height: 50.h,
           ),
           Container(
-            height: 300.h,
-            width: MediaQuery.sizeOf(context).width * 0.9.w,
+            height: AppConstants.mainContainerHeight,
+            width: AppConstants.mainContainerWidth,
+            padding: EdgeInsets.symmetric(
+                horizontal: AppConstants.mainContainerHPadding,
+                vertical: AppConstants.mainContainerVPadding),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(AppConstants.appRadius),
               color: Colors.white,
               boxShadow: [
-                BoxShadow(color: AppColors.shadow,
+                BoxShadow(
+                    color: AppColors.shadow,
                     blurRadius: 15.0,
                     offset: const Offset(0.0, 0.75)),
               ],
@@ -74,34 +86,36 @@ class _LanguageViewState extends State<LanguageView> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 buttonContainer(
-                  context,
-                  75.h,
-                  MediaQuery.sizeOf(context).width * 0.8.w,
-                  AppColors.primary,
-                  AppColors.shadow,
-                  textComponent(
-                      context,
-                      AppStrings.arabic,
-                      AppFonts.arabicFontFamily,
-                      AppColors.backGround,
-                      FontWeight.normal,
-                      18.sp),(){
-                  Navigator.pushReplacementNamed(context, Routes.customerCategoryRoute);
-                }),
-                buttonContainer(
                     context,
-                    75.h,
+                    AppConstants.btnHeight,
                     MediaQuery.sizeOf(context).width * 0.8.w,
                     AppColors.primary,
                     AppColors.shadow,
-                  textComponent(
-                      context,
-                      AppStrings.english,
-                      AppFonts.englishFontFamily,
-                      AppColors.backGround,
-                      FontWeight.bold,
-                      18.sp),(){
-                  Navigator.pushReplacementNamed(context, Routes.customerCategoryRoute);
+                    textComponent(
+                        context,
+                        AppStrings.arabic,
+                        AppFonts.arabicFontFamily,
+                        AppColors.backGround,
+                        FontWeight.normal,
+                        AppConstants.btnFontSize), () {
+                  Navigator.pushReplacementNamed(
+                      context, Routes.customerCategoryRoute);
+                }),
+                buttonContainer(
+                    context,
+                    AppConstants.btnHeight,
+                    MediaQuery.sizeOf(context).width * 0.8.w,
+                    AppColors.primary,
+                    AppColors.shadow,
+                    textComponent(
+                        context,
+                        AppStrings.english,
+                        AppFonts.englishFontFamily,
+                        AppColors.backGround,
+                        FontWeight.bold,
+                        AppConstants.btnFontSize), () {
+                  Navigator.pushReplacementNamed(
+                      context, Routes.customerCategoryRoute);
                 }),
               ],
             ),

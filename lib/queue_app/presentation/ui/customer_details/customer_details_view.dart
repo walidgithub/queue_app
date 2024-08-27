@@ -37,15 +37,18 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textComponent(context, AppStrings.customerDetailAr,
-                AppFonts.englishFontFamily, AppColors.black, FontWeight.bold, 40.sp),
+                AppFonts.englishFontFamily, AppColors.black, FontWeight.bold, AppConstants.titleFontSize),
             textComponent(context, AppStrings.customerDetails,
-                AppFonts.englishFontFamily, AppColors.black, FontWeight.bold, 40.sp),
+                AppFonts.englishFontFamily, AppColors.black, FontWeight.bold, AppConstants.titleFontSize),
             SizedBox(
               height: 50.h,
             ),
             Container(
-              height: 300.h,
-              width: MediaQuery.sizeOf(context).width * 0.9.w,
+              height: AppConstants.mainContainerHeight,
+              width: AppConstants.mainContainerWidth,
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppConstants.mainContainerHPadding,
+                  vertical: AppConstants.mainContainerVPadding),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(AppConstants.appRadius),
                 color: Colors.white,
@@ -60,7 +63,7 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
                 children: [
                   justContainer(
                       context,
-                      75.h,
+                      AppConstants.btnHeight,
                       MediaQuery.sizeOf(context).width * 0.8.w,
                       AppColors.backGround,
                       AppColors.shadow,
@@ -70,10 +73,10 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
                       AppFonts.englishFontFamily,
                       AppColors.black,
                       FontWeight.bold,
-                      18.sp)),
+                      AppConstants.btnFontSize)),
                   justContainer(
                       context,
-                      75.h,
+                      AppConstants.btnHeight,
                       MediaQuery.sizeOf(context).width * 0.8.w,
                       AppColors.backGround,
                       AppColors.shadow,
@@ -83,10 +86,10 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
                           AppFonts.englishFontFamily,
                           AppColors.black,
                           FontWeight.bold,
-                          18.sp)),
+                          AppConstants.btnFontSize)),
                   buttonContainer(
                       context,
-                      75.h,
+                      AppConstants.btnHeight,
                       MediaQuery.sizeOf(context).width * 0.8.w,
                       AppColors.primary,
                       AppColors.shadow,
@@ -96,7 +99,7 @@ class _CustomerDetailsViewState extends State<CustomerDetailsView> {
                           AppFonts.englishFontFamily,
                           AppColors.backGround,
                           FontWeight.bold,
-                          18.sp),(){
+                          AppConstants.btnFontSize),(){
                     Navigator.pushReplacementNamed(context, Routes.printingRoute);
                   })
                 ],

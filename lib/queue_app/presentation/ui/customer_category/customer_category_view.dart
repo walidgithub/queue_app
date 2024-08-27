@@ -37,15 +37,15 @@ class _CustomerCategoryViewState extends State<CustomerCategoryView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               textComponent(context, AppStrings.customerCategoryAr,
-                  AppFonts.arabicFontFamily, AppColors.black, FontWeight.bold, 30.sp),
+                  AppFonts.arabicFontFamily, AppColors.black, FontWeight.bold, AppConstants.titleFontSize),
               textComponent(context, AppStrings.customerCategory,
-                  AppFonts.englishFontFamily, AppColors.black, FontWeight.bold, 30.sp),
+                  AppFonts.englishFontFamily, AppColors.black, FontWeight.bold, AppConstants.titleFontSize),
               SizedBox(
                 height: 50.h,
               ),
               Container(
-                width: MediaQuery.sizeOf(context).width * 0.9.w,
-                padding: EdgeInsets.symmetric(horizontal: 15.w,vertical: 15.h),
+                width: AppConstants.mainContainerWidth,
+                padding: EdgeInsets.symmetric(horizontal: AppConstants.mainContainerHPadding,vertical: AppConstants.mainContainerVPadding),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConstants.appRadius),
                   color: Colors.white,
@@ -69,7 +69,7 @@ class _CustomerCategoryViewState extends State<CustomerCategoryView> {
                         itemBuilder: (context,index) {
                           return buttonContainer(
                               context,
-                              60.h,
+                              AppConstants.btnHeight,
                               MediaQuery.sizeOf(context).width * 0.8.w,
                               AppColors.primary,
                               AppColors.shadow,
@@ -79,7 +79,7 @@ class _CustomerCategoryViewState extends State<CustomerCategoryView> {
                                   AppFonts.arabicFontFamily,
                                   AppColors.backGround,
                                   FontWeight.normal,
-                                  18.sp),(){
+                                AppConstants.btnFontSize,),(){
                             Navigator.pushReplacementNamed(context, Routes.serviceCategoryRoute);
                           });
                         }),

@@ -1,8 +1,10 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:queue_app/queue_app/presentation/di/di.dart';
 import 'package:queue_app/queue_app/presentation/router/app_router.dart';
+import 'package:queue_app/queue_app/presentation/shared/constants/app_constants.dart';
 import 'package:queue_app/queue_app/presentation/shared/constants/app_strings.dart';
 import 'package:queue_app/queue_app/presentation/shared/style/app_colors.dart';
 
@@ -11,11 +13,14 @@ void main() async {
 
   await ServiceLocator().init();
   await ScreenUtil.ensureScreenSize();
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(DevicePreview(builder: (context) => const MyApp()));
+
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
   SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
   ]);
 
   // ErrorWidget.builder = (FlutterErrorDetails details) => Scaffold(
@@ -25,7 +30,7 @@ void main() async {
   //         child: Column(
   //           children: [
   //             Text(
-  //               AppStrings.someThingWentWrong,
+  //               '$details',
   //               style: TextStyle(color: AppColors.primary),
   //             ),
   //             SizedBox(
