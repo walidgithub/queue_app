@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:esc_pos_printer/esc_pos_printer.dart';
-import 'package:esc_pos_utils/esc_pos_utils.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:queue_app/queue_app/presentation/shared/constants/app_constants.dart';
@@ -9,15 +6,14 @@ import 'package:queue_app/queue_app/presentation/shared/constants/app_strings.da
 import 'package:queue_app/queue_app/presentation/shared/style/app_colors.dart';
 import 'package:queue_app/queue_app/presentation/shared/style/app_fonts.dart';
 import 'package:screenshot/screenshot.dart';
-import '../../../../utils/printer.dart';
-import '../../di/di.dart';
 import '../../router/app_router.dart';
+import '../../router/arguments.dart';
 import '../../shared/constants/app_assets.dart';
-import '../../shared/preferences/app_pref.dart';
-import '../../shared/utils/ImagestorByte.dart';
 import '../../shared/utils/functions.dart';
 import '../components/button_container.dart';
 import '../components/text_component.dart';
+import '../invoice/invoice_format/invoice_data.dart';
+import '../invoice/invoice_generator.dart';
 
 class PrintingView extends StatefulWidget {
   const PrintingView({super.key});
@@ -28,6 +24,7 @@ class PrintingView extends StatefulWidget {
 
 class _PrintingViewState extends State<PrintingView> {
   ScreenshotController screenshotController = ScreenshotController();
+  final data = InvoiceData.localInvoiceData();
 
   @override
   void initState() {
@@ -43,8 +40,11 @@ class _PrintingViewState extends State<PrintingView> {
                 child: Scaffold(
                     body: bodyContent(context),
                     floatingActionButton: FloatingActionButton(
-                      onPressed: () {
-
+                      onPressed: () async {
+                        await InvoiceGenerator.createInvoiceAndPrint(
+                            context: context,
+                            data: data
+                        );
                       },
                       tooltip: 'Print',
                       child: const Icon(Icons.print),
@@ -192,13 +192,27 @@ class _PrintingViewState extends State<PrintingView> {
             left: 10.w,
             child: buttonContainer(
                 context,
-                50.w,
-                50.w,
+                40.w,
+                40.w,
                 AppColors.backGround,
                 AppColors.shadow,
                 SvgPicture.asset(AppAssets.home, width: 30.w), () {
               Navigator.pushReplacementNamed(context, Routes.languageRoute);
-            }))
+            }, 5.w, 5.h)),
+        Positioned(
+            bottom: 10.h,
+            left: 100.w,
+            child: buttonContainer(
+                context,
+                40.w,
+                40.w,
+                AppColors.backGround,
+                AppColors.shadow,
+                SvgPicture.asset(AppAssets.preview, width: 30.w), () {
+              Navigator.pushNamed(context, Routes.previewRoute,
+                  arguments:
+                  PreviewData(context: context,data: data));
+            }, 5.w, 5.h))
       ],
     );
   }

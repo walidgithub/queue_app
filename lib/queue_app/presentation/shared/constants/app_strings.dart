@@ -20,4 +20,6 @@ class AppStrings {
   static const String save = 'Save';
   static const String close = 'Close';
   static const String printerIp = 'Printer IP';
+  static const String success = 'success';
+  static const String defaultError = 'DEFAULT';
 }

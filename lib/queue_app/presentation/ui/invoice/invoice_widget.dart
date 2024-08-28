@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
-import '../formatter.dart';
+import '../../../../utils/printerFiles/constants.dart';
+import '../../../../utils/printerFiles/formatter.dart';
 
 class InvoiceWidget {
   static Widget buildItems({required double screenWidth, required String title, required String value, int reducedWidth=0, double? fontSize, bool isBold=false, bool centerPos=false}) {

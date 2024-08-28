@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../constants.dart';
+import '../../../../../utils/printerFiles/constants.dart';
 import '../invoice_widget.dart';
 import 'invoice_model.dart';
 

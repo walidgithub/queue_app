@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:queue_app/queue_app/presentation/ui/settings/printer_services/printer_service.dart';
-
-import '../custom_widgets/popup_message.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:queue_app/queue_app/presentation/ui/printing/printer_services/printer_service.dart';
+import '../../../shared/constants/app_constants.dart';
+import '../../../shared/style/app_colors.dart';
+import '../../../shared/style/app_fonts.dart';
+import '../../components/button_container.dart';
+import '../../components/text_component.dart';
+import '../../settings/custom_widgets/popup_message.dart';
 
 class PrinterSettingScreen extends StatefulWidget {
-  final Map<String, dynamic> data;
-  const PrinterSettingScreen({Key? key, required this.data}) : super(key: key);
+  const PrinterSettingScreen({super.key});
 
   @override
   State<PrinterSettingScreen> createState() => _PrinterSettingScreenState();
@@ -42,8 +46,8 @@ class _PrinterSettingScreenState extends State<PrinterSettingScreen> {
       children: [
         Container(
             width: double.infinity,
-            height: 130,
-            padding: const EdgeInsets.only(left: 10, right: 10),
+            height: 130.h,
+            padding: const EdgeInsets.only(left: 50, right: 50),
             margin: const EdgeInsets.only(top: 40),
             decoration: const BoxDecoration(
               // border: Border.all(color: Colors.blue)
@@ -195,6 +199,24 @@ class _PrinterSettingScreenState extends State<PrinterSettingScreen> {
                   }
               )
           ),
+        SizedBox(
+          height: AppConstants.heightBetweenElements,
+        ),
+        buttonContainer(
+            context,
+            80.h,
+            100.w,
+            AppColors.primary,
+            AppColors.shadow,
+            textComponent(
+              context,
+              'Back',
+              AppFonts.arabicFontFamily,
+              AppColors.backGround,
+              FontWeight.normal,
+              8.sp),(){
+          Navigator.pop(context);
+        })
       ],
     );
   }

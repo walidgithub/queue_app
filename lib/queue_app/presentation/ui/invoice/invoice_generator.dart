@@ -2,9 +2,9 @@ import 'dart:typed_data';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
-import '../printer_services/printer_service.dart';
-import 'food_and_drink_invoice/invoice_builder.dart';
-import 'food_and_drink_invoice/invoice_model.dart';
+import '../printing/printer_services/printer_service.dart';
+import 'invoice_format/invoice_builder.dart';
+import 'invoice_format/invoice_model.dart';
 
 class InvoiceGenerator {
   static Uint8List? generatedInvoiceImage;
